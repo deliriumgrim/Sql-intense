@@ -1,0 +1,28 @@
+-- Session 1
+SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SHOW TRANSACTION ISOLATION LEVEL;
+
+-- Session 2
+SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SHOW TRANSACTION ISOLATION LEVEL;
+
+-- Session 1
+BEGIN;
+
+-- Session 2
+BEGIN;
+
+-- Session 1
+SELECT sum(rating) FROM pizzeria;
+
+-- Session 2
+UPDATE pizzeria SET rating = 5 WHERE name = 'Pizza Hut';
+COMMIT;
+
+-- Session 1
+SELECT sum(rating) FROM pizzeria;
+COMMIT;
+SELECT sum(rating) FROM pizzeria;
+
+-- Session 2
+SELECT sum(rating) FROM pizzeria;
