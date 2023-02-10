@@ -11,7 +11,6 @@ create table person
   gender varchar default 'female' not null ,
   address varchar
   );
-
 alter table person add constraint ch_gender check ( gender in ('female','male') );
 
 insert into person values (1, 'Anna', 16, 'female', 'Moscow');
